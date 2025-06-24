@@ -1,0 +1,5 @@
+.env
+__pycache__/
+*.py[cod]
+*.class
+shared_data/output/

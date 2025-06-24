@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  scheduler:
+    build: ./scheduler
+    container_name: scheduler
+    ports:
+      - "8080:8080"
+    environment:
+      - WORKER_PULL_INTERVAL=1s        # how often workers poll when idle
+    volumes:
+      - ./shared_data:/data            # shared images + results
+
+  worker:
+    build: ./worker
+    depends_on:
+      - scheduler
+    environment:
+      - SCHEDULER_URL=http://scheduler:8080
+    volumes:
+      - ./shared_data:/data
+    # Run multiple replicas with:
+    # docker compose up --scale worker=2
