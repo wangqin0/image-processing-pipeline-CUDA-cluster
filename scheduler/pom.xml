@@ -6,12 +6,11 @@
       http://maven.apache.org/POM/4.0.0 
       http://maven.apache.org/xsd/maven-4.0.0.xsd
     ">
-  <!-- Inherit defaults and dependency versions from Spring Boot -->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.1.5</version>
-    <relativePath/> <!-- lookup parent from Maven Central -->
+    <relativePath/>
   </parent>
   
   <modelVersion>4.0.0</modelVersion>
@@ -24,7 +23,6 @@
   </properties>
 
   <dependencies>
-    <!-- no <version> needed: managed by parent -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -38,7 +36,6 @@
 
   <build>
     <plugins>
-      <!-- version inherited from parent -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
