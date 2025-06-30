@@ -2,6 +2,7 @@ import time, requests, cv2
 import os
 
 SCHEDULER_URL = os.getenv("SCHEDULER_URL", "http://scheduler:8080")
+OUTPUT_DIR = os.getenv("OUTPUT_DIR", "/data/output")
 
 # Polling interval in milliseconds (shared with scheduler). Must be plain integer.
 _interval_raw = os.getenv("WORKER_PULL_INTERVAL", "1000").strip()

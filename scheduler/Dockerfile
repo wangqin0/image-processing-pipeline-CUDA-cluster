@@ -6,7 +6,7 @@ COPY src ./src
 RUN mvn -q package -DskipTests
 
 # ---------- runtime stage ----------
-FROM arm64v8/openjdk:17-jdk-slim
+FROM openjdk:17-jdk
 WORKDIR /app
 COPY --from=build /build/target/scheduler-0.0.1-SNAPSHOT.jar scheduler.jar
 EXPOSE 8080

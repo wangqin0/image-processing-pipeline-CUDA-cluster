@@ -38,6 +38,23 @@ public class JobController {
         workerIntervalMillis = parseDurationToMillis(workerIntervalStr);
     }
 
+    @PostConstruct
+    private void initOutputDir() {
+        String outputDir = System.getenv("OUTPUT_DIR");
+        if (outputDir == null) {
+            outputDir = "/data/output";
+        }
+        try {
+            if (!Files.exists(Paths.get(outputDir))) {
+                Files.createDirectories(Paths.get(outputDir));
+            }
+        } catch (Exception e) {
+            logger.error("Failed to create output directory: {}", outputDir, e);
+            throw new RuntimeException("Cannot initialize output directory", e);
+        }
+        logger.info("Output directory initialized: {}", outputDir);
+    }
+
     private static long parseDurationToMillis(String raw) {
         if (raw == null || raw.isBlank()) {
             throw new IllegalArgumentException("WORKER_PULL_INTERVAL must be set and non-empty");
